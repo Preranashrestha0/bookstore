@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        .favorite {
+            background-color: brown;
+        }   
+    </style>
+</head>
+<body>
+    <div >
+        <div class="nav-bar">
+            <ul style="list-style-type: none;">
+                <li><button>Home</button></li>
+                <li><button>Search</button></li>
+                <li><button>Add Book</button></li>
+                <li><button>Book List</button></li>
+                
+            </ul>
+        </div>
+        <div class="main-div">
+            <img src="https://t4.ftcdn.net/jpg/01/46/40/35/360_F_146403506_381OxD624hppWMQcIbjLuSr8TCW1q2lj.jpg">
+            <h1>Online BookStore</h1>
+            <div class="search-bar">
+                <input type="text" id="search-bar" placeholder="Search for a book...">
+                <button onclick="searchBook()">Search</button>
+                <button onclick="clearSearchHighlights()">Clear Highlights</button>
+
+                <ul id="book-list">
+                    <!-- Existing book titles can be listed here -->
+                </ul>
+                <button onclick="addBook()">Add Book</button>
+                <button onclick="removeBook()">Remove Last Book</button>
+                        
+            </div>
+        </div>
+    </div>
+    <script>
+        function addBook() {
+            const bookTitle = prompt("Enter the book title:");
+            if (bookTitle) {
+                const li = document.createElement("li");
+                li.textContent = bookTitle;
+                li.addEventListener("click", toggleFavorite);
+                document.getElementById("book-list").appendChild(li);
+            } else {
+                alert("Book title cannot be empty.");
+            }
+        }
+
+        function searchBook() {
+            // Get the search term from the input field
+            const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+            
+            // Get all the li elements in the book list
+            const books = document.querySelectorAll("#book-list li");
+            
+            // Loop through the books and highlight those that match the search term
+            books.forEach(book => {
+                // Remove any previous highlights
+                book.classList.remove("highlight");
+                
+                // Check if the book title includes the search term
+                if (book.textContent.toLowerCase().includes(searchTerm) && searchTerm !== "") {
+                    // Highlight the matching book
+                    book.classList.add("highlight");
+                }
+            });
+        }
+        function clearSearchHighlights() {
+            const books = document.querySelectorAll("#book-list li");
+            books.forEach(book => {
+                book.classList.remove("highlight");
+            });
+        }
+
+        function removeBook() {
+            // Get the ul element
+            const bookList = document.getElementById("book-list");
+
+            // Check if there are any books in the list
+            if (bookList.children.length > 0) {
+                // Confirm the removal
+                const confirmRemoval = confirm("Are you sure you want to remove the last book?");
+                
+                // If confirmed, remove the last book
+                if (confirmRemoval) {
+                    bookList.removeChild(bookList.lastElementChild);
+                }
+            } else {
+                alert("No books to remove.");
+            }
+        }
+        function toggleFavorite(event) {
+            event.target.classList.toggle("favorite");
+        }
+
+        // Add event listeners to existing list items (if any)
+        document.querySelectorAll("#book-list li").forEach(item => {
+            item.addEventListener("click", toggleFavorite);
+        });
+    </script>
+</body>
+</html>

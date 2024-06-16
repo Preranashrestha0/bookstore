@@ -1,0 +1,79 @@
+
+
+.nav-bar {
+    background-color:bisque;
+    overflow: hidden;
+    height: 3rem;
+}
+
+.nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-bar ul li a,
+.nav-bar ul li button {
+    padding-bottom: 20px;
+    color: brown;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: color 0.3s;
+}
+.nav-bar ul li a:hover,
+        .nav-bar ul li button:hover {
+            color: #f2a365;
+        }
+.main-div{
+    position: relative;
+    text-align: center;
+}
+.main-div img{
+    height: 42.171rem;
+    width: 91.5rem;
+    
+}
+.main-div h1{
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.search-bar{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.search-bar input, button{
+    padding: 10px;
+    border-radius: 10px;
+    border-color:#c5c1c1 ;
+    font-weight: bold;
+}
+
+.search-bar button{
+    background-color: bisque;
+    color: brown;
+}
+
+#book-list{
+    list-style-type: none;
+    color: brown;
+    background-color: bisque;
+    text-align: start;
+}
